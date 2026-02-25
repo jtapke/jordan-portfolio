@@ -64,12 +64,12 @@ export default function RegChangeTracker() {
   const hasMore = visibleCount < filteredUpdates.length;
 
   return (
-    <div class="relative">
-      {/* Floating ticker background */}
+    <div>
+      {/* Ticker strip */}
       {!loading && updates.length > 0 && <FloatingTicker updates={updates} />}
 
       {/* Main content */}
-      <div class="relative z-10">
+      <div>
         {!loading && !error && (
           <FilterBar
             filters={filters}

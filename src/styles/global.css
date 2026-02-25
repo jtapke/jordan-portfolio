@@ -151,13 +151,13 @@ body {
   border: 1.5px solid var(--color-bg-primary);
 }
 
-/* Floating ticker animation for regulatory tracker */
+/* Ticker animation for regulatory tracker */
 @keyframes ticker-scroll {
   0% {
-    transform: translateX(100vw);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }
 
