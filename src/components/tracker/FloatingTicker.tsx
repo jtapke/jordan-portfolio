@@ -28,7 +28,7 @@ export default function FloatingTicker({ updates }: Props) {
       <div
         class="whitespace-nowrap font-mono text-xs text-text-secondary py-2.5"
         style={{
-          animation: `ticker-scroll 60s linear infinite`,
+          animation: `ticker-scroll 35s linear infinite`,
         }}
       >
         {tickerText}
