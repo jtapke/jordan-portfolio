@@ -253,7 +253,7 @@ export default function LeafletMap({ locations }: Props) {
             {currentLocation.month} {currentLocation.year}
           </p>
           <p class="text-base md:text-lg font-medium text-text-primary mt-0.5">
-            {displayCity(currentLocation)}, {currentLocation.country}
+            {displayCity(currentLocation)}{currentLocation.country ? `, ${currentLocation.country}` : ''}
           </p>
         </div>
 
