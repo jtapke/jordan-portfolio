@@ -38,7 +38,7 @@ export default function FloatingTicker({ updates }: Props) {
           class="absolute whitespace-nowrap font-mono text-xs text-text-primary"
           style={{
             top: `${item.top}%`,
-            opacity: 0.06,
+            opacity: 0.15,
             animation: `ticker-scroll ${item.duration}s linear ${item.delay}s infinite`,
           }}
         >
