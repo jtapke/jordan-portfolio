@@ -10,6 +10,7 @@ interface Location {
   lat: number;
   lng: number;
   label: string;
+  current?: boolean;
 }
 
 interface Props {
@@ -22,6 +23,8 @@ export default function LeafletMap({ locations }: Props) {
   const markersRef = useRef<any[]>([]);
   const pathsRef = useRef<any[]>([]);
   const activeMarkerRef = useRef<any>(null);
+  const circleRef = useRef<any>(null);
+  const LRef = useRef<any>(null);
   const [currentIndex, setCurrentIndex] = useState(locations.length - 1);
   const [leafletReady, setLeafletReady] = useState(false);
 
@@ -61,6 +64,7 @@ export default function LeafletMap({ locations }: Props) {
       L.control.zoom({ position: 'bottomright' }).addTo(map);
 
       mapInstanceRef.current = map;
+      LRef.current = L;
 
       // Create visited markers (small muted dots) for all locations
       const visitedMarkers: any[] = [];
@@ -121,6 +125,22 @@ export default function LeafletMap({ locations }: Props) {
       activeMarker.addTo(map);
       activeMarkerRef.current = activeMarker;
 
+      // Add circle radius for SF Bay Area (home base)
+      if (isSFBayArea(lastLoc)) {
+        const circle = L.circle([lastLoc.lat, lastLoc.lng], {
+          radius: 16093, // ~10 miles in meters
+          color: '#E07A2F',
+          fillColor: '#E07A2F',
+          fillOpacity: 0.08,
+          weight: 1.5,
+          opacity: 0.4,
+          dashArray: '6 4',
+          interactive: false,
+        });
+        circle.addTo(map);
+        circleRef.current = circle;
+      }
+
       // Set initial view to show the current location
       map.setView([lastLoc.lat, lastLoc.lng], 4);
 
@@ -156,6 +176,29 @@ export default function LeafletMap({ locations }: Props) {
 
     // Move active marker
     activeMarkerRef.current.setLatLng([loc.lat, loc.lng]);
+
+    // Show/hide circle for SF Bay Area
+    const L = LRef.current;
+    if (L) {
+      if (circleRef.current) {
+        mapInstanceRef.current.removeLayer(circleRef.current);
+        circleRef.current = null;
+      }
+      if (isSFBayArea(loc)) {
+        const circle = L.circle([loc.lat, loc.lng], {
+          radius: 16093,
+          color: '#E07A2F',
+          fillColor: '#E07A2F',
+          fillOpacity: 0.08,
+          weight: 1.5,
+          opacity: 0.4,
+          dashArray: '6 4',
+          interactive: false,
+        });
+        circle.addTo(mapInstanceRef.current);
+        circleRef.current = circle;
+      }
+    }
 
     // Update path visibility
     updatePathVisibility(currentIndex, pathsRef.current);
@@ -228,6 +271,13 @@ export default function LeafletMap({ locations }: Props) {
       </div>
     </div>
   );
+}
+
+/**
+ * Check if a location is in the SF Bay Area (home base)
+ */
+function isSFBayArea(loc: Location): boolean {
+  return loc.city === 'San Francisco' && loc.country === 'United States';
 }
 
 /**
