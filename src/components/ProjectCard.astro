@@ -1,0 +1,61 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+  description: string;
+  image: string;
+  tags: string[];
+}
+
+const { title, slug, description, image, tags } = Astro.props;
+---
+
+<a href={`/projects/${slug}`} class="group block">
+  <article class="bg-bg-secondary border border-border rounded-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-accent/30 h-full flex flex-col">
+    <!-- Thumbnail -->
+    <div class="aspect-[16/10] bg-bg-secondary relative overflow-hidden">
+      {image ? (
+        <img
+          src={image}
+          alt={title}
+          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+      ) : (
+        <div class="w-full h-full flex items-center justify-center">
+          <svg class="w-12 h-12 text-accent/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+      )}
+    </div>
+
+    <!-- Content -->
+    <div class="p-5 md:p-6 flex flex-col flex-1">
+      <!-- Tags -->
+      <div class="flex flex-wrap gap-2 mb-3">
+        {tags.map((tag) => (
+          <span class="mono-label text-xs text-accent bg-accent-light/50 px-2 py-0.5 rounded-sm">
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <h3 class="heading-md text-text-primary mb-2 group-hover:text-accent transition-colors">
+        {title}
+      </h3>
+
+      <p class="text-text-secondary text-sm leading-relaxed flex-1">
+        {description}
+      </p>
+
+      <!-- View arrow -->
+      <div class="mt-4 flex items-center gap-2 text-accent text-sm font-medium tracking-wide uppercase">
+        <span>View Project</span>
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </div>
+    </div>
+  </article>
+</a>

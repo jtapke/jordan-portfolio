@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Jordan Tapke"
+  description="Regulatory compliance professional exploring the world. Portfolio showcasing projects in data, mapping, and analytics."
+  currentPage="/"
+>
+  <!-- Hero Section -->
+  <section class="pt-32 pb-20 md:pt-40 md:pb-28 px-6">
+    <div class="max-w-4xl mx-auto">
+      <p class="mono-label text-accent mb-4 animate-fade-in">Welcome</p>
+      <h1 class="heading-xl text-text-primary mb-6 animate-fade-in-delay-1">
+        Jordan Tapke
+      </h1>
+      <div class="max-w-2xl animate-fade-in-delay-2">
+        <p class="body-lg text-text-secondary mb-6">
+          Regulatory compliance professional with 5+ years of experience in financial services.
+          Most recently at JPMorgan Chase, where I managed compliance programs, built automated
+          reporting controls with Python and Alteryx, and delivered board-level presentations
+          to senior leadership.
+        </p>
+        <p class="body-lg text-text-secondary mb-10">
+          Currently on a career sabbatical &mdash; traveling the world, picking up new skills
+          in data analytics and programming, and exploring what&rsquo;s next. Curious where
+          the journey has gone? Check out
+          <a href="/projects/where-in-the-world" class="text-accent hover:text-accent-hover transition-colors underline underline-offset-4 decoration-accent/40">
+            Where in the World is Jordan?
+          </a>
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-4 animate-fade-in-delay-3">
+        <a
+          href="/projects/where-in-the-world"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-accent text-bg-primary font-medium text-sm rounded-sm hover:bg-accent-hover transition-colors tracking-wide uppercase"
+        >
+          See Where I Am
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+        <a
+          href="/projects"
+          class="inline-flex items-center gap-2 px-6 py-3 border border-border text-text-primary font-medium text-sm rounded-sm hover:border-accent hover:text-accent transition-colors tracking-wide uppercase"
+        >
+          View Projects
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Project Teaser -->
+  <section class="pb-20 md:pb-28 px-6">
+    <div class="max-w-4xl mx-auto">
+      <a href="/projects/where-in-the-world" class="group block">
+        <div class="bg-bg-secondary border border-border rounded-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-accent/30">
+          <div class="aspect-[21/9] bg-bg-secondary relative overflow-hidden flex items-center justify-center">
+            <!-- Map Preview Placeholder -->
+            <div class="text-center px-6">
+              <svg class="w-16 h-16 mx-auto mb-4 text-accent/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p class="mono-label text-text-secondary">Interactive Map</p>
+            </div>
+          </div>
+          <div class="p-6 md:p-8">
+            <p class="mono-label text-accent mb-2">Featured Project</p>
+            <h2 class="heading-md text-text-primary mb-2 group-hover:text-accent transition-colors">
+              Where in the World is Jordan?
+            </h2>
+            <p class="text-text-secondary">
+              An interactive travel tracker showing my journey across the globe. Navigate through time to see where I&rsquo;ve been.
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import projects from '../../data/projects.json';
+---
+
+<BaseLayout
+  title="Projects"
+  description="Explore Jordan Tapke's projects — interactive maps, data tools, and more."
+  currentPage="/projects"
+>
+  <section class="pt-32 pb-20 md:pt-40 md:pb-28 px-6">
+    <div class="max-w-6xl mx-auto">
+      <!-- Page Header -->
+      <div class="mb-12 md:mb-16">
+        <p class="mono-label text-accent mb-4 animate-fade-in">Portfolio</p>
+        <h1 class="heading-xl text-text-primary mb-4 animate-fade-in-delay-1">Projects</h1>
+        <p class="body-lg text-text-secondary max-w-xl animate-fade-in-delay-2">
+          Things I&rsquo;ve built, explored, and experimented with.
+        </p>
+      </div>
+
+      <!-- Project Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {projects.map((project) => (
+          <ProjectCard
+            title={project.title}
+            slug={project.slug}
+            description={project.description}
+            image={project.image}
+            tags={project.tags}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

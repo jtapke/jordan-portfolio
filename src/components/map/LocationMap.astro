@@ -1,0 +1,8 @@
+---
+import locationData from '../../data/locations.json';
+import LeafletMap from './LeafletMap';
+
+const { locations } = locationData;
+---
+
+<LeafletMap locations={locations} client:visible />

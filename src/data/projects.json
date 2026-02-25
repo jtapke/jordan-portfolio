@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Where in the World is Jordan?",
+    "slug": "where-in-the-world",
+    "description": "An interactive travel tracker showing my journey across the globe. Navigate through time to follow the path.",
+    "image": "",
+    "tags": ["Interactive", "Map"],
+    "featured": true
+  }
+]

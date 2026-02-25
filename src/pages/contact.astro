@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Jordan Tapke. Whether it's about work, collaboration, or just to say hello."
+  currentPage="/contact"
+>
+  <section class="pt-32 pb-20 md:pt-40 md:pb-28 px-6">
+    <div class="max-w-5xl mx-auto">
+      <!-- Page Header -->
+      <div class="mb-12 md:mb-16">
+        <p class="mono-label text-accent mb-4 animate-fade-in">Say Hello</p>
+        <h1 class="heading-xl text-text-primary mb-4 animate-fade-in-delay-1">Get in Touch</h1>
+        <p class="body-lg text-text-secondary max-w-xl animate-fade-in-delay-2">
+          Whether it&rsquo;s about work, collaboration, or just to say hello &mdash; I&rsquo;d love to hear from you.
+        </p>
+      </div>
+
+      <!-- Two Column Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-16">
+        <!-- Form (takes 3 columns) -->
+        <div class="md:col-span-3">
+          <ContactForm />
+        </div>
+
+        <!-- Info (takes 2 columns) -->
+        <div class="md:col-span-2">
+          <div class="bg-bg-secondary border border-border rounded-sm p-6 md:p-8">
+            <h2 class="heading-md text-text-primary mb-6">Other Ways to Connect</h2>
+
+            <div class="space-y-5">
+              <div>
+                <p class="mono-label text-accent mb-1">LinkedIn</p>
+                <a
+                  href="https://www.linkedin.com/in/jtapke/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-text-primary hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent"
+                >
+                  linkedin.com/in/jtapke
+                </a>
+              </div>
+
+              <div>
+                <p class="mono-label text-accent mb-1">Email</p>
+                <a
+                  href="mailto:tapkej@gmail.com"
+                  class="text-text-primary hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent"
+                >
+                  tapkej@gmail.com
+                </a>
+              </div>
+
+              <div>
+                <p class="mono-label text-accent mb-1">Location</p>
+                <p class="text-text-secondary">
+                  Currently traveling &mdash; check out
+                  <a
+                    href="/projects/where-in-the-world"
+                    class="text-accent hover:text-accent-hover transition-colors"
+                  >
+                    Where in the World
+                  </a>
+                  to find out where!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

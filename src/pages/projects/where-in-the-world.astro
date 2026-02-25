@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LocationMap from '../../components/map/LocationMap.astro';
+---
+
+<BaseLayout
+  title="Where in the World is Jordan?"
+  description="An interactive travel tracker following Jordan Tapke's journey across the globe. Navigate through time to see where the adventure has gone."
+  currentPage="/projects"
+>
+  <section class="pt-28 pb-8 md:pt-36 md:pb-12 px-6">
+    <div class="max-w-6xl mx-auto">
+      <!-- Back Link -->
+      <a
+        href="/projects"
+        class="inline-flex items-center gap-2 text-text-secondary hover:text-accent transition-colors text-sm mb-8"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Projects
+      </a>
+
+      <!-- Project Header -->
+      <div class="mb-8 md:mb-10">
+        <p class="mono-label text-accent mb-3">Interactive Map</p>
+        <h1 class="heading-xl text-text-primary mb-3">
+          Where in the World is Jordan?
+        </h1>
+        <p class="mono-label text-text-secondary">
+          An interactive travel tracker
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="px-4 md:px-6 pb-8">
+    <div class="max-w-6xl mx-auto">
+      <LocationMap />
+
+      <!-- Safety Note -->
+      <p class="text-center text-text-secondary text-sm mt-4 italic">
+        Location displayed is delayed by approximately one month for safety.
+      </p>
+    </div>
+  </section>
+
+  <!-- Project Description -->
+  <section class="px-6 pb-20 md:pb-28">
+    <div class="max-w-3xl mx-auto">
+      <div class="border-t border-border pt-10 md:pt-14">
+        <h2 class="heading-lg text-text-primary mb-6">About This Project</h2>
+        <div class="space-y-4 body-lg text-text-secondary">
+          <p>
+            After leaving my role at JPMorgan Chase, I decided to take a sabbatical and
+            explore the world. This interactive map tracks my journey &mdash; each pin
+            represents a city I&rsquo;ve called home for a while.
+          </p>
+          <p>
+            Use the arrow controls to navigate through my timeline. The curved dotted
+            lines between locations trace the path of the journey, and you can zoom and
+            pan the map to explore each destination.
+          </p>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="mt-10">
+          <h3 class="heading-md text-text-primary mb-4">Built With</h3>
+          <div class="flex flex-wrap gap-2">
+            {['Leaflet.js', 'OpenStreetMap', 'Preact', 'Astro', 'Tailwind CSS'].map((tech) => (
+              <span class="mono-label text-xs bg-accent-light/50 text-accent px-3 py-1.5 rounded-sm">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
