@@ -1,6 +1,7 @@
 export default function LoadingState() {
   return (
     <div class="space-y-4">
+      <p class="font-mono text-xs text-text-secondary uppercase tracking-wider mb-2">Pulling latest updates...</p>
       {[...Array(5)].map((_, i) => (
         <div
           key={i}
