@@ -128,7 +128,7 @@ export default function LeafletMap({ locations }: Props) {
       // Add circle radius for SF Bay Area (home base)
       if (isSFBayArea(lastLoc)) {
         const circle = L.circle([lastLoc.lat, lastLoc.lng], {
-          radius: 32186, // ~20 miles in meters
+          radius: 48280, // ~30 miles in meters
           color: '#E07A2F',
           fillColor: '#E07A2F',
           fillOpacity: 0.08,
@@ -186,7 +186,7 @@ export default function LeafletMap({ locations }: Props) {
       }
       if (isSFBayArea(loc)) {
         const circle = L.circle([loc.lat, loc.lng], {
-          radius: 32186, // ~20 miles in meters
+          radius: 48280, // ~30 miles in meters
           color: '#E07A2F',
           fillColor: '#E07A2F',
           fillOpacity: 0.08,
