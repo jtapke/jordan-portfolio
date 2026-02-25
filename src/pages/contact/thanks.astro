@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Message Sent"
+  description="Thank you for reaching out. I'll get back to you soon."
+  currentPage="/contact"
+>
+  <section class="pt-32 pb-20 md:pt-40 md:pb-28 px-6">
+    <div class="max-w-2xl mx-auto text-center">
+      <!-- Check Icon -->
+      <div class="w-16 h-16 mx-auto mb-8 rounded-full bg-accent/10 flex items-center justify-center animate-fade-in">
+        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <p class="mono-label text-accent mb-4 animate-fade-in">Message Sent</p>
+      <h1 class="heading-xl text-text-primary mb-4 animate-fade-in-delay-1">Thank You!</h1>
+      <p class="body-lg text-text-secondary mb-10 animate-fade-in-delay-2">
+        I appreciate you reaching out. I&rsquo;ll get back to you as soon as I can.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay-2">
+        <a
+          href="/"
+          class="inline-flex items-center justify-center gap-2 px-8 py-3 bg-accent text-bg-primary font-medium text-sm rounded-sm hover:bg-accent-hover transition-colors tracking-wide uppercase"
+        >
+          Back to Home
+        </a>
+        <a
+          href="/projects"
+          class="inline-flex items-center justify-center gap-2 px-8 py-3 border border-border text-text-primary font-medium text-sm rounded-sm hover:border-accent hover:text-accent transition-colors tracking-wide uppercase"
+        >
+          View Projects
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
