@@ -128,7 +128,7 @@ export default function LeafletMap({ locations }: Props) {
       // Add circle radius for SF Bay Area (home base)
       if (isSFBayArea(lastLoc)) {
         const circle = L.circle([lastLoc.lat, lastLoc.lng], {
-          radius: 16093, // ~10 miles in meters
+          radius: 32186, // ~20 miles in meters
           color: '#E07A2F',
           fillColor: '#E07A2F',
           fillOpacity: 0.08,
@@ -186,7 +186,7 @@ export default function LeafletMap({ locations }: Props) {
       }
       if (isSFBayArea(loc)) {
         const circle = L.circle([loc.lat, loc.lng], {
-          radius: 16093,
+          radius: 32186, // ~20 miles in meters
           color: '#E07A2F',
           fillColor: '#E07A2F',
           fillOpacity: 0.08,
@@ -253,7 +253,7 @@ export default function LeafletMap({ locations }: Props) {
             {currentLocation.month} {currentLocation.year}
           </p>
           <p class="text-base md:text-lg font-medium text-text-primary mt-0.5">
-            {currentLocation.city}, {currentLocation.country}
+            {displayCity(currentLocation)}, {currentLocation.country}
           </p>
         </div>
 
@@ -278,6 +278,14 @@ export default function LeafletMap({ locations }: Props) {
  */
 function isSFBayArea(loc: Location): boolean {
   return loc.city === 'San Francisco' && loc.country === 'United States';
+}
+
+/**
+ * Display name for a location (SF gets renamed to "SF Bay Area")
+ */
+function displayCity(loc: Location): string {
+  if (isSFBayArea(loc)) return 'SF Bay Area';
+  return loc.city;
 }
 
 /**
