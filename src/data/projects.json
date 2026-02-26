@@ -14,5 +14,13 @@
     "image": "",
     "tags": ["Compliance", "Live Data"],
     "featured": true
+  },
+  {
+    "title": "Corporate FP&A Dashboard",
+    "slug": "financial-planning-dashboard",
+    "description": "Interactive financial planning dashboard with variance analysis, driver-based forecasting, and scenario modeling for a mid-size SaaS company.",
+    "image": "",
+    "tags": ["Finance", "Data Viz"],
+    "featured": true
   }
 ]
