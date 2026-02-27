@@ -28,10 +28,28 @@ export const FEED_CONFIGS: FeedConfig[] = [
   },
 ];
 
-const PROXY_URL = 'https://api.allorigins.win/raw?url=';
+const PROXIES = [
+  (url: string) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+  (url: string) => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+  (url: string) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
+];
 const CACHE_TTL = 15 * 60 * 1000; // 15 minutes
 
 const cache = new Map<string, { data: RegulatoryUpdate[]; timestamp: number }>();
+
+async function fetchWithProxy(url: string, proxyFn: (url: string) => string): Promise<string> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 6000);
+  try {
+    const res = await fetch(proxyFn(url), { signal: controller.signal });
+    clearTimeout(timeout);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.text();
+  } catch (e) {
+    clearTimeout(timeout);
+    throw e;
+  }
+}
 
 async function fetchFeed(config: FeedConfig): Promise<RegulatoryUpdate[]> {
   const cached = cache.get(config.url);
@@ -39,27 +57,21 @@ async function fetchFeed(config: FeedConfig): Promise<RegulatoryUpdate[]> {
     return cached.data;
   }
 
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 8000);
-
-  try {
-    const res = await fetch(
-      `${PROXY_URL}${encodeURIComponent(config.url)}`,
-      { signal: controller.signal },
-    );
-    clearTimeout(timeout);
-
-    if (!res.ok) return [];
-
-    const xml = await res.text();
-    const updates = parseRSSFeed(xml, config.source, config.label);
-
-    cache.set(config.url, { data: updates, timestamp: Date.now() });
-    return updates;
-  } catch {
-    clearTimeout(timeout);
-    return [];
+  for (const proxyFn of PROXIES) {
+    try {
+      const xml = await fetchWithProxy(config.url, proxyFn);
+      if (!xml || !xml.includes('<')) continue;
+      const updates = parseRSSFeed(xml, config.source, config.label);
+      if (updates.length > 0) {
+        cache.set(config.url, { data: updates, timestamp: Date.now() });
+        return updates;
+      }
+    } catch {
+      continue;
+    }
   }
+
+  return [];
 }
 
 export async function fetchAllFeeds(): Promise<RegulatoryUpdate[]> {
