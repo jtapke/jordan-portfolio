@@ -2,6 +2,7 @@
 import SEOHead from '../components/SEOHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Analytics from '../components/Analytics.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -37,5 +38,6 @@ const { title, description, image, currentPage } = Astro.props;
       <slot />
     </main>
     <Footer />
+    <Analytics />
   </body>
 </html>
